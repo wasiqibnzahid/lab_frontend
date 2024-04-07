@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.select input:focus {
+  border-width: 0px !important;
+  outline-width: 0px !important;
+  box-shadow: unset !important;
+}
+.select * {
+  color: black !important;
+}
