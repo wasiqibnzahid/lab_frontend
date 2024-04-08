@@ -45,7 +45,7 @@ const CalliperChart: React.FC<Props> = ({ data }) => {
       },
       yaxis: {
         title: {
-          text: "Tumor Volume mm^3",
+          text: "Ivis Dosage",
           style: {
             fontSize: "14px",
             fontWeight: 600,

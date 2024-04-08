@@ -30,10 +30,10 @@ export default function Modal() {
         }
       );
     } finally {
-      // setLoading(false);
-      // setShowModal(false);
+      setLoading(false);
+      setShowModal(false);
       setFile(null);
-      // window.location.reload();
+      window.location.reload();
     }
   }
   return (
