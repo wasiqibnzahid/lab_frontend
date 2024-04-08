@@ -61,9 +61,16 @@ const CalliperChart: React.FC<Props> = ({ data }) => {
   };
 
   const chartOptions = useMemo(() => {
+    console.log(
+      data?.[0]?.data?.[7]?.data,
+      data?.[0]?.data?.[7]?.data?.sort((a, b) => a[0] - b[0])
+    );
     return data.map((group) => ({
       ...ivisData,
-      series: group.data,
+      series: group.data.map((item) => ({
+        ...item,
+        data: item.data.sort((a, b) => a[0] - b[0]),
+      })),
       options: {
         ...ivisData.options,
         title: {

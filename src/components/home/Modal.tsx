@@ -1,4 +1,4 @@
-import   { useState } from "react";
+import { useState } from "react";
 
 import ReactSelect from "react-select";
 import "../../index.css";
@@ -30,10 +30,10 @@ export default function Modal() {
         }
       );
     } finally {
-      setLoading(false);
-      setShowModal(false);
+      // setLoading(false);
+      // setShowModal(false);
       setFile(null);
-      window.location.reload();
+      // window.location.reload();
     }
   }
   return (
