@@ -1,4 +1,4 @@
-import   { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import ReactSelect from "react-select";
 import "../../index.css";
@@ -15,6 +15,8 @@ interface Mouse {
   name: string;
   status: string;
   updated_at: string;
+  treatment_start: string;
+  first_screening: string;
 }
 
 export default function MiceModal({ disabled, groups }: Props) {
@@ -58,7 +60,7 @@ export default function MiceModal({ disabled, groups }: Props) {
   }, [selectedItem]);
   function updateMouseStatus(
     index: number,
-    key: "status" | "updated_at",
+    key: "status" | "updated_at" | "first_screening" | "treatment_start",
     value: string
   ) {
     setMice((old) => {
@@ -97,7 +99,7 @@ export default function MiceModal({ disabled, groups }: Props) {
             </span>
 
             <div
-              className="inline-flex h-full align-bottom bg-white min-h-[300px] rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full flex-col"
+              className="inline-flex h-full align-bottom bg-white min-h-[300px] rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle w-[900px] flex-col"
               role="dialog"
               aria-modal="true"
               aria-labelledby="modal-headline"
@@ -123,10 +125,16 @@ export default function MiceModal({ disabled, groups }: Props) {
               </div>
               <div className="px-2">
                 <div className="flex justify-evenly items-center mb-2">
-                  <div className="px-2 text-center w-1/3 font-bold">Name</div>
-                  <div className="px-2 text-center w-1/3 font-bold">Status</div>
-                  <div className="px-2 w-1/3 text-center font-bold">
+                  <div className="px-2 text-center w-1/5 font-bold">Name</div>
+                  <div className="px-2 text-center w-1/5 font-bold">Status</div>
+                  <div className="px-2 w-1/5 text-center font-bold">
                     Status Changed At
+                  </div>
+                  <div className="px-2 w-1/5 text-center font-bold">
+                    First Screening
+                  </div>
+                  <div className="px-2 w-1/5 text-center font-bold">
+                    Treatment Start
                   </div>
                 </div>
               </div>
@@ -139,32 +147,75 @@ export default function MiceModal({ disabled, groups }: Props) {
                 {!loading &&
                   mice.map((mouse, index) => (
                     <div className="flex justify-evenly items-center mb-2">
-                      <div className="px-2 text-center w-1/3">{mouse.name}</div>
-                      <div className="px-2 w-1/3">
+                      <div className="px-2 text-center w-1/5">{mouse.name}</div>
+                      <div className="px-2 w-1/5 select">
                         {" "}
-                        <input
-                          type="text"
-                          value={mouse.status}
+                        <ReactSelect
+                          value={{ value: mouse.status, label: mouse.status }}
                           onChange={(e) =>
-                            updateMouseStatus(index, "status", e.target.value)
+                            updateMouseStatus(index, "status", e.value)
                           }
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                          options={
+                            [
+                              { label: "alive", value: "alive" },
+                              { label: "dead", value: "dead" },
+                              { label: "sacrificed", value: "sacrificed" },
+                            ] as any
+                          }
+                          className="text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                           placeholder="Status"
                           required
                         />
                       </div>
-                      <div className="px-2 w-1/3">
+                      <div className="px-2 w-1/5">
                         {" "}
                         <input
                           value={mouse.updated_at}
-                          onChange={(e) =>
+                          onChange={(e) => {
+                            console.log(e.target.value);
                             updateMouseStatus(
                               index,
                               "updated_at",
                               e.target.value
-                            )
-                          }
-                          type="text"
+                            );
+                          }}
+                          type="date"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                          placeholder="Status Changed At"
+                          required
+                        />
+                      </div>
+                      <div className="px-2 w-1/5">
+                        {" "}
+                        <input
+                          value={mouse.first_screening}
+                          onChange={(e) => {
+                            console.log(e.target.value);
+                            updateMouseStatus(
+                              index,
+                              "first_screening",
+                              e.target.value
+                            );
+                          }}
+                          type="date"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                          placeholder="Status Changed At"
+                          required
+                        />
+                      </div>
+                      <div className="px-2 w-1/5">
+                        {" "}
+                        <input
+                          value={mouse.treatment_start}
+                          onChange={(e) => {
+                            console.log(e.target.value);
+                            updateMouseStatus(
+                              index,
+                              "treatment_start",
+                              e.target.value
+                            );
+                          }}
+                          type="date"
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                           placeholder="Status Changed At"
                           required

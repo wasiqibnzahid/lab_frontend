@@ -1,12 +1,13 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Chart from "react-apexcharts";
 import { DataEntity } from "../../types/types";
-import { Spinner } from "flowbite-react";
+import { Button, Spinner } from "flowbite-react";
 
 interface Props {
   data: DataEntity[];
+  showEditModal: (param: DataEntity) => void;
 }
-const CalliperChart: React.FC<Props> = ({ data }) => {
+const CalliperChart: React.FC<Props> = ({ data, showEditModal }) => {
   const [itemIndex, setItemIndex] = useState(0);
 
   // Sample data for IVIS Imaging
@@ -111,13 +112,18 @@ const CalliperChart: React.FC<Props> = ({ data }) => {
       <div className="flex flex-col gap-8">
         {chartOptions.map((conf, i) =>
           itemIndex >= i ? (
-            <Chart
-              key={conf.options.title.text + i}
-              options={conf.options}
-              series={conf.series}
-              type="line"
-              height={500}
-            />
+            <React.Fragment>
+              <div className="flex justify-end items-center">
+                <Button onClick={() => showEditModal(data[i])}>Edit</Button>
+              </div>
+              <Chart
+                key={conf.options.title.text + i}
+                options={conf.options}
+                series={conf.series}
+                type="line"
+                height={500}
+              />
+            </React.Fragment>
           ) : (
             <div className="h-[500px] flex items-center justify-center">
               {" "}

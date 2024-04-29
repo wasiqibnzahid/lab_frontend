@@ -7,6 +7,7 @@ import CaliperTumorChart from "./CaliperTumorChart";
 import axios from "axios";
 import { DataEntity } from "../../types/types";
 import MiceModal from "./MiceModal";
+import EditModal from "./EditModal";
 // import MideModal from "./MiceModal"
 
 export interface PilotGroup {
@@ -17,12 +18,14 @@ export interface PilotGroup {
 const Home = () => {
   const [loadingTumor, setLoadingTumor] = useState(true);
   const [loadingGroups, setLoadingGroups] = useState(false);
+  const [isIvis, setIsIvis] = useState(false);
   const [pilotOptions, setPilotOptions] = useState<
     { label: string; value: any }[]
   >([]);
   const [tumorState, setTumorState] = useState<DataEntity[]>([]);
   const [ivisState, setIvisState] = useState<DataEntity[]>([]);
   const [comparisonState, setComparisonState] = useState(false);
+  const [editModalData, setEditModalData] = useState<DataEntity>(null);
   const [groupOptions, setGroupOptions] = useState<
     { label: string; value: any }[]
   >([]);
@@ -122,7 +125,10 @@ const Home = () => {
       setLoadingTumor(false);
     }
   }
-
+  function openEditModal(data: DataEntity, isIvis: boolean) {
+    setIsIvis(isIvis);
+    setEditModalData(data);
+  }
   return (
     <div className="mt-8">
       <h1 className="text-3xl font-bold mb-4">Tumor Size Dashboard</h1>
@@ -151,9 +157,6 @@ const Home = () => {
           </Button>
         </div>
         <div className="?z-30 relative mb-12 flex items-start justify-end gap-4">
-          {/* <Button onClick={showMouseData} disabled={loadingTumor}>
-            View Mouse Data
-          </Button> */}
           <MiceModal disabled={loadingTumor} groups={groupOptions} />
         </div>
 
@@ -167,10 +170,16 @@ const Home = () => {
             ) : (
               <React.Fragment>
                 <div className="w-[48%]">
-                  <IvisChart data={ivisState} />
+                  <IvisChart
+                    showEditModal={(data) => openEditModal(data, true)}
+                    data={ivisState}
+                  />
                 </div>
                 <div className="w-[48%]">
-                  <CalliperChart data={tumorState} />
+                  <CalliperChart
+                    showEditModal={(data) => openEditModal(data, false)}
+                    data={tumorState}
+                  />
                 </div>
               </React.Fragment>
             )}
@@ -182,6 +191,13 @@ const Home = () => {
           )}
         </div>
       </div>
+      {editModalData && (
+        <EditModal
+          isIvis={isIvis}
+          close={() => setEditModalData(null)}
+          data={editModalData}
+        />
+      )}
     </div>
   );
 };
