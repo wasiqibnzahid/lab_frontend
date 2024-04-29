@@ -13,6 +13,28 @@ const CalliperChart: React.FC<Props> = ({ data, showEditModal }) => {
   // Sample data for IVIS Imaging
   const ivisData = {
     options: {
+      colors: [
+        "#F44336", // Red
+        "#2ECC71", // Emerald green
+        "#E91E63", // Light coral
+        "#9C27B0", // Dark violet
+        "#3F51B5", // Indigo
+        "#FF9800", // Orange
+        "#FFEB3B", // Canary yellow
+        "#795548", // Dark brown
+        "#009688", // Teal
+        "#C2185B", // Medium violet red
+        "#4CAF50", // Green
+        "#CDDC39", // Light green (chartreuse)
+        "#FFCDD2", // Pink
+        "#00BCD4", // Light blue
+        "#9E9E9E", // Grey
+        "#DF0030", // Red (deeper shade)
+        "#FFFF00", // Yellow
+        "#00C7CF", // Sky blue
+        "#EE82EE", // Violet
+        "#673AB7", // Deep purple
+      ],
       dataLabels: {
         enabled: false,
       },
