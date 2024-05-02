@@ -1,8 +1,10 @@
 import { Sidebar } from "flowbite-react";
-import { HiChartPie, HiTemplate } from "react-icons/hi";
+import { HiChartPie, HiTemplate, HiCalculator } from "react-icons/hi";
 import Modal from "../home/Modal";
-
-function SidebarComponent() {
+interface Props {
+  changeView: (isHome: boolean) => void;
+}
+function SidebarComponent({ changeView }: Props) {
   return (
     <Sidebar
       theme={{
@@ -28,11 +30,22 @@ function SidebarComponent() {
           <h2 className="text-xl text-center pt-3 font-semibold text-white uppercase tracking-wide pl-2">
             Lab Results
           </h2>
-          <Sidebar.Item className="cursor-pointer" icon={HiChartPie}>
+          <Sidebar.Item
+            onClick={() => changeView(true)}
+            className="cursor-pointer"
+            icon={HiChartPie}
+          >
             Dashboard
           </Sidebar.Item>
           <Sidebar.Item icon={HiTemplate}>
             <Modal />
+          </Sidebar.Item>
+          <Sidebar.Item
+            className="cursor-pointer"
+            onClick={() => changeView(false)}
+            icon={HiCalculator}
+          >
+            View Metrics
           </Sidebar.Item>
         </Sidebar.ItemGroup>
       </Sidebar.Items>

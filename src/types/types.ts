@@ -27,3 +27,30 @@ export interface DataEntity2 {
   data: Record<string, number>;
   status: string;
 }
+
+export interface MetricsData {
+  study_duration: StudyDuration;
+  sacrificed_percentage: number;
+  average_days_to_sacrifice: AverageDaysToSacrificeOrAverageDaysToDead;
+  average_days_to_dead: AverageDaysToSacrificeOrAverageDaysToDead;
+  percentage_died: number;
+  average_tumor_growth_before: number;
+  average_growth_after: number;
+  weekly_average_growth_after_treatment: WeeklyAverageGrowthAfterTreatment;
+}
+export interface StudyDuration {
+  start?: null;
+  end?: null;
+}
+export interface AverageDaysToSacrificeOrAverageDaysToDead {
+  from_treatment_start: number;
+  from_study_start: number;
+}
+export interface WeeklyAverageGrowthAfterTreatment {
+  labels?: string[] | null;
+  datasets?: DatasetsEntity[] | null;
+}
+export interface DatasetsEntity {
+  name: string;
+  data: number[];
+}
