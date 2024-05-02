@@ -5,7 +5,7 @@ import { useState } from "react";
 import Metrics from "./components/Metrics";
 
 function App() {
-  const [showHome, setShowHome] = useState(false);
+  const [showHome, setShowHome] = useState(true);
   return (
     <Flowbite>
       <div className="flex flex-nowrap ">
