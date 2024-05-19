@@ -117,7 +117,7 @@ export default function Metrics() {
             </div>
             <div className="block  p-6 bg-white border border-gray-200 rounded-lg shadow  ">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900  ">
-                Average Days to Sacrifice After Study
+                Average Days to Sacrifice After Study Start
               </h5>
               <p className="font-normal text-gray-700  ">
                 {data?.average_days_to_sacrifice?.from_study_start?.toFixed(
@@ -128,7 +128,7 @@ export default function Metrics() {
             </div>
             <div className="block  p-6 bg-white border border-gray-200 rounded-lg shadow  ">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900  ">
-                Average Days to Dead After Study
+                Average Days to Dead After Study Start
               </h5>
               <p className="font-normal text-gray-700  ">
                 {data?.average_days_to_dead?.from_study_start?.toFixed(2) || 0}{" "}
@@ -137,7 +137,7 @@ export default function Metrics() {
             </div>
             <div className="block  p-6 bg-white border border-gray-200 rounded-lg shadow  ">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900  ">
-                Average Days to Sacrifice After Treatment
+                Average Days to Sacrifice After Treatment Start
               </h5>
               <p className="font-normal text-gray-700  ">
                 {data?.average_days_to_sacrifice?.from_treatment_start?.toFixed(
@@ -148,7 +148,7 @@ export default function Metrics() {
             </div>
             <div className="block  p-6 bg-white border border-gray-200 rounded-lg shadow  ">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900  ">
-                Average Days to Dead After Treatment
+                Average Days to Dead After Treatment Start
               </h5>
               <p className="font-normal text-gray-700  ">
                 {data?.average_days_to_dead?.from_treatment_start?.toFixed(2) ||
